@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1D72EBA1E95996C0029E73C /* SVNShapesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D72EB81E95996C0029E73C /* SVNShapesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */; };
+		A1D72EDC1E95ABC90029E73C /* ShapeMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -16,6 +17,7 @@
 		A1D72EB81E95996C0029E73C /* SVNShapesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVNShapesManager.h; sourceTree = "<group>"; };
 		A1D72EB91E95996C0029E73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNShapesManager.swift; sourceTree = "<group>"; };
+		A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeMetaData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */,
+				A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */,
 				A1D72EB81E95996C0029E73C /* SVNShapesManager.h */,
 				A1D72EB91E95996C0029E73C /* Info.plist */,
 			);
@@ -136,6 +139,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D72EDC1E95ABC90029E73C /* ShapeMetaData.swift in Sources */,
 				A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

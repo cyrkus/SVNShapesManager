@@ -16,39 +16,7 @@ public enum ShapeLocation {
     case topLeft, topMid, topRight, midLeft, midMid, midRight, botLeft, botMid, botRight
 }
 
-public struct ShapeMetaData {
-    var shapes: [CAShapeLayer]?
-    var location: ShapeLocation
-    var padding: CGPoint
-    var size: CGSize
-    var fill: CGColor
-    var stroke: CGColor
-    var strokeWidth: CGFloat
-    
-    init(meta: ShapeMetaData){
-        self.shapes = meta.shapes
-        self.location = meta.location
-        self.padding = meta.padding
-        self.size = meta.size
-        self.fill = meta.fill
-        self.stroke = meta.stroke
-        self.strokeWidth = meta.strokeWidth
-    }
-    
-    init(shapes: [CAShapeLayer]?, location: ShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
-        self.shapes = shapes
-        self.location = location
-        self.padding = padding
-        self.size = size
-        self.fill = fill
-        self.stroke = stroke
-        self.strokeWidth = strokeWidth
-    }
-    
-    mutating func flushLayers(){
-        self.shapes?.forEach({ $0.removeFromSuperlayer() })
-    }
-}
+
 
 
 final class SVNShapesManager : NSObject {
@@ -100,7 +68,7 @@ final class SVNShapesManager : NSObject {
         }
     }
     
-    public func fetchRect(with meta: ShapeMetaData) -> CGRect {
+    public func fetchRect(with meta: SVNShapeMetaData) -> CGRect {
         return fetchRect(for: meta.location, with: meta.padding, and: meta.size)
     }
     
@@ -111,7 +79,7 @@ final class SVNShapesManager : NSObject {
      - fillColor: UIColor
      - strokeColor: UIColor
      */
-    public func createCircleLayer(with meta: ShapeMetaData) -> CAShapeLayer {
+    public func createCircleLayer(with meta: SVNShapeMetaData) -> CAShapeLayer {
         let circleLayer = CAShapeLayer()
         let rect = fetchRect(with: meta)
         let circlePath = UIBezierPath(roundedRect: rect, cornerRadius: rect.width / 2.0)
@@ -131,7 +99,7 @@ final class SVNShapesManager : NSObject {
      - strokeColor: UIColor
      - fillColor: UIColor
      */
-    public func createTwoLines(with meta: ShapeMetaData, shapeToCreate shape: SVNStandardShape) -> [CAShapeLayer] {
+    public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNStandardShape) -> [CAShapeLayer] {
         let middle = min(meta.size.width, meta.size.height) * 0.5
         let plus = [CGPoint(x: middle, y: middle/2),
                     CGPoint(x:middle, y: meta.size.height - middle/2),
@@ -182,7 +150,7 @@ final class SVNShapesManager : NSObject {
     }
     
     
-    public func createCheckMark(with meta: ShapeMetaData) -> [CAShapeLayer] {
+    public func createCheckMark(with meta: SVNShapeMetaData) -> [CAShapeLayer] {
         let checkMarkLayer = CAShapeLayer()
         let checkMarkPath = UIBezierPath()
         
@@ -206,7 +174,7 @@ final class SVNShapesManager : NSObject {
     /**
      Animates a circle shape to have the path of a horizontal oval
      */
-    public func animateToOval(with meta: ShapeMetaData, in duration: Double, withNewLocation location: ShapeLocation?, withBlock block: (() -> Void)?) {
+    public func animateToOval(with meta: SVNShapeMetaData, in duration: Double, withNewLocation location: ShapeLocation?, withBlock block: (() -> Void)?) {
         guard let circle = meta.shapes?.first else { fatalError(ErrorType.nonInstanciatedLayer.description) }
         CATransaction.begin()
         CATransaction.setCompletionBlock(block)
@@ -234,7 +202,7 @@ final class SVNShapesManager : NSObject {
         CATransaction.commit()
     }
     
-    public func animate(to location: ShapeLocation, meta: ShapeMetaData, withBlock block: (() -> Void)?) {
+    public func animate(to location: ShapeLocation, meta: SVNShapeMetaData, withBlock block: (() -> Void)?) {
         guard let shape = meta.shapes?.first else { fatalError(ErrorType.nonInstanciatedLayer.description) }
         CATransaction.begin()
         CATransaction.setCompletionBlock(block)
