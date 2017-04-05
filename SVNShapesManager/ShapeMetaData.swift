@@ -7,7 +7,18 @@
 //
 
 import Foundation
-
+/**
+ SVNShapeMetaData is used by SVNShapesManager to layout, create, animate and mutate CALayers.
+ All values are mutable
+ - variables:
+    - shapes: [CAShapeLayer]? A place to store created shapes from SVNShapesManager
+    - location: SVNShapeLocation designate a location in a 9x9 graph in the containing view for which to layout a shape
+    - padding: CGPoint This point will be used by SVNShapesManager to pad against the containing view
+    - size: CGSize The size that the shape will be 
+    - fill: CGColor The fillColor of the shape
+    - stroke: CGColor The strokeColor of the shape
+    - strokeWidth: The lineWidth of the shape
+*/
 public struct SVNShapeMetaData {
     var shapes: [CAShapeLayer]?
     var location: SVNShapeLocation
@@ -26,7 +37,9 @@ public struct SVNShapeMetaData {
         self.stroke = meta.stroke
         self.strokeWidth = meta.strokeWidth
     }
-    
+    /**
+     Creates a SVNShapeMetaData type
+    */
     init(shapes: [CAShapeLayer]?, location: SVNShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
         self.shapes = shapes
         self.location = location
@@ -37,6 +50,9 @@ public struct SVNShapeMetaData {
         self.strokeWidth = strokeWidth
     }
     
+    /**
+     A helper function that removes shapes from their superLayers
+    */
     mutating func flushLayers(){
         self.shapes?.forEach({ $0.removeFromSuperlayer() })
     }

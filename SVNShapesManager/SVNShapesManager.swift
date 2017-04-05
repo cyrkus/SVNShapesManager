@@ -7,7 +7,12 @@
 //
 
 import UIKit
-
+/**
+ A CALayer layout, animating, mutating and updating manager.
+    To use this manager pass the CGRect of the the container that you want to add shapes to.
+    You can then use on of the various *create* methods to instanciate and add paths to a CALayer instance.
+    Once created you can use one of the various *animate* methods to animate and mutate a SVNShapeMetaData instance and shapes therein.
+ */
 final class SVNShapesManager : NSObject {
     
     private  enum LayerType {

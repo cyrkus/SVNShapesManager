@@ -7,7 +7,9 @@
 //
 
 import Foundation
-
+/**
+ The currently supported shape types to pass to a SVNShapesManager instance.
+ */
 public enum SVNShape {
     case circle, exit, checkMark, plus, oval
 }
