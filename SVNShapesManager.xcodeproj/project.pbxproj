@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A1D72EBA1E95996C0029E73C /* SVNShapesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D72EB81E95996C0029E73C /* SVNShapesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A1D72EB51E95996C0029E73C /* SVNShapesManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SVNShapesManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1D72EB81E95996C0029E73C /* SVNShapesManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SVNShapesManager.h; sourceTree = "<group>"; };
 		A1D72EB91E95996C0029E73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNShapesManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		A1D72EB71E95996C0029E73C /* SVNShapesManager */ = {
 			isa = PBXGroup;
 			children = (
+				A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */,
 				A1D72EB81E95996C0029E73C /* SVNShapesManager.h */,
 				A1D72EB91E95996C0029E73C /* Info.plist */,
 			);
@@ -96,6 +99,7 @@
 					A1D72EB41E95996C0029E73C = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = BEPPW5449K;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -132,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +245,7 @@
 		A1D72EBE1E95996C0029E73C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BEPPW5449K;
@@ -252,6 +258,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.7apps.SVNShapesManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -259,6 +266,7 @@
 		A1D72EBF1E95996C0029E73C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = BEPPW5449K;
@@ -294,6 +302,7 @@
 				A1D72EBF1E95996C0029E73C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
