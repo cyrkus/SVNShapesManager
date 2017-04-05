@@ -28,7 +28,7 @@ public struct SVNShapeMetaData {
     var stroke: CGColor
     var strokeWidth: CGFloat
     
-    init(meta: SVNShapeMetaData){
+    public init(meta: SVNShapeMetaData){
         self.shapes = meta.shapes
         self.location = meta.location
         self.padding = meta.padding
@@ -40,7 +40,7 @@ public struct SVNShapeMetaData {
     /**
      Creates a SVNShapeMetaData type
     */
-    init(shapes: [CAShapeLayer]?, location: SVNShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
+    public init(shapes: [CAShapeLayer]?, location: SVNShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
         self.shapes = shapes
         self.location = location
         self.padding = padding
@@ -53,7 +53,7 @@ public struct SVNShapeMetaData {
     /**
      A helper function that removes shapes from their superLayers
     */
-    mutating func flushLayers(){
+    public mutating func flushLayers(){
         self.shapes?.forEach({ $0.removeFromSuperlayer() })
     }
 }

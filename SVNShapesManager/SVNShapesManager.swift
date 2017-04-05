@@ -40,9 +40,9 @@ public final class SVNShapesManager : NSObject {
         }
     }
     
-    var container: CGRect
+    public var container: CGRect
     
-    init(container: CGRect){
+    public init(container: CGRect){
         self.container = container
     }
     
