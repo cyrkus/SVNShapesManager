@@ -8,17 +8,6 @@
 
 import UIKit
 
-public enum SVNStandardShape {
-    case circle, exit, checkMark, plus, oval
-}
-
-public enum ShapeLocation {
-    case topLeft, topMid, topRight, midLeft, midMid, midRight, botLeft, botMid, botRight
-}
-
-
-
-
 final class SVNShapesManager : NSObject {
     
     private  enum LayerType {
@@ -53,7 +42,7 @@ final class SVNShapesManager : NSObject {
     }
     
     //MARK: Constructors
-    public func fetchRect(for location: ShapeLocation, with padding: CGPoint, and size: CGSize) -> CGRect{
+    public func fetchRect(for location: SVNShapeLocation, with padding: CGPoint, and size: CGSize) -> CGRect{
         switch location {
         case .topLeft:
             return CGRect(x: padding.x, y: padding.y, width: size.width, height: size.height)
@@ -99,7 +88,7 @@ final class SVNShapesManager : NSObject {
      - strokeColor: UIColor
      - fillColor: UIColor
      */
-    public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNStandardShape) -> [CAShapeLayer] {
+    public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNShape) -> [CAShapeLayer] {
         let middle = min(meta.size.width, meta.size.height) * 0.5
         let plus = [CGPoint(x: middle, y: middle/2),
                     CGPoint(x:middle, y: meta.size.height - middle/2),
@@ -174,7 +163,7 @@ final class SVNShapesManager : NSObject {
     /**
      Animates a circle shape to have the path of a horizontal oval
      */
-    public func animateToOval(with meta: SVNShapeMetaData, in duration: Double, withNewLocation location: ShapeLocation?, withBlock block: (() -> Void)?) {
+    public func animateToOval(with meta: SVNShapeMetaData, in duration: Double, withNewLocation location: SVNShapeLocation?, withBlock block: (() -> Void)?) {
         guard let circle = meta.shapes?.first else { fatalError(ErrorType.nonInstanciatedLayer.description) }
         CATransaction.begin()
         CATransaction.setCompletionBlock(block)
@@ -202,7 +191,7 @@ final class SVNShapesManager : NSObject {
         CATransaction.commit()
     }
     
-    public func animate(to location: ShapeLocation, meta: SVNShapeMetaData, withBlock block: (() -> Void)?) {
+    public func animate(to location: SVNShapeLocation, meta: SVNShapeMetaData, withBlock block: (() -> Void)?) {
         guard let shape = meta.shapes?.first else { fatalError(ErrorType.nonInstanciatedLayer.description) }
         CATransaction.begin()
         CATransaction.setCompletionBlock(block)
@@ -242,7 +231,7 @@ final class SVNShapesManager : NSObject {
      - strokeColor: UIColor the color to stroke the layers with
      - important: will remove all previously added SVNStandardButtonType layers
      
-     public func createLayer(for shape: SVNStandardShape, fillColor: UIColor, strokeColor: UIColor) {
+     public func createLayer(for shape: SVNShape, fillColor: UIColor, strokeColor: UIColor) {
      if customLayers != nil {
      customLayers?.forEach({ $0.value.removeFromSuperlayer() })
      customLayers = nil
@@ -278,16 +267,16 @@ final class SVNShapesManager : NSObject {
      start: .exit || .plus
      end: .circle
      
-     public func animate(to shape: SVNStandardShape, startDuration: Double = 0.5, endDuration: Double = 0.5){
+     public func animate(to shape: SVNShape, startDuration: Double = 0.5, endDuration: Double = 0.5){
      switch (self.currentShape, shape) {
      //Animate to exit
-     case (SVNStandardShape.circle, SVNStandardShape.exit):
+     case (SVNShape.circle, SVNShape.exit):
      self.animateCircleFill(withColor: .white, duration: startDuration, withBlock: {
      self.createTwoLines(with: shape, strokeColor: .white, fillColor: .clear)
      self.animateCircleFill(withColor: .red, duration: endDuration, withBlock: nil)
      })
      //Animate to circle
-     case (SVNStandardShape.exit, SVNStandardShape.circle):
+     case (SVNShape.exit, SVNShape.circle):
      self.animateExit(withColor: .white, duration: startDuration, withBlock: {
      guard let firstLineLayer = self.customLayers?[LayerType.firstLine],
      let secondLineLayer = self.customLayers?[LayerType.secondLine] else { fatalError(ErrorType.nonInstanciatedLayer.description) }
@@ -295,7 +284,7 @@ final class SVNShapesManager : NSObject {
      secondLineLayer.removeFromSuperlayer()
      self.animateCircleFill(withColor: .clear, duration: endDuration, withBlock: nil)
      })
-     case (SVNStandardShape.circle, SVNStandardShape.oval):
+     case (SVNShape.circle, SVNShape.oval):
      self.animateCircleToOval(withBlock: {
      print("finished")
      })

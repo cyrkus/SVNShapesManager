@@ -10,7 +10,7 @@ import Foundation
 
 public struct SVNShapeMetaData {
     var shapes: [CAShapeLayer]?
-    var location: ShapeLocation
+    var location: SVNShapeLocation
     var padding: CGPoint
     var size: CGSize
     var fill: CGColor
@@ -27,7 +27,7 @@ public struct SVNShapeMetaData {
         self.strokeWidth = meta.strokeWidth
     }
     
-    init(shapes: [CAShapeLayer]?, location: ShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
+    init(shapes: [CAShapeLayer]?, location: SVNShapeLocation, padding: CGPoint, size:CGSize, fill:CGColor, stroke:CGColor, strokeWidth: CGFloat){
         self.shapes = shapes
         self.location = location
         self.padding = padding

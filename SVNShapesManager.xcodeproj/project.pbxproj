@@ -10,6 +10,8 @@
 		A1D72EBA1E95996C0029E73C /* SVNShapesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D72EB81E95996C0029E73C /* SVNShapesManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */; };
 		A1D72EDC1E95ABC90029E73C /* ShapeMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */; };
+		A1D72EDE1E95AC470029E73C /* SVNShapeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72EDD1E95AC470029E73C /* SVNShapeLocation.swift */; };
+		A1D72EE01E95AC590029E73C /* SVNShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D72EDF1E95AC590029E73C /* SVNShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		A1D72EB91E95996C0029E73C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNShapesManager.swift; sourceTree = "<group>"; };
 		A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShapeMetaData.swift; sourceTree = "<group>"; };
+		A1D72EDD1E95AC470029E73C /* SVNShapeLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNShapeLocation.swift; sourceTree = "<group>"; };
+		A1D72EDF1E95AC590029E73C /* SVNShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SVNShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +54,30 @@
 		A1D72EB71E95996C0029E73C /* SVNShapesManager */ = {
 			isa = PBXGroup;
 			children = (
-				A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */,
-				A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */,
+				A1D72EE21E95AC950029E73C /* Manager */,
+				A1D72EE11E95AC8F0029E73C /* Model */,
 				A1D72EB81E95996C0029E73C /* SVNShapesManager.h */,
 				A1D72EB91E95996C0029E73C /* Info.plist */,
 			);
 			path = SVNShapesManager;
+			sourceTree = "<group>";
+		};
+		A1D72EE11E95AC8F0029E73C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1D72EDD1E95AC470029E73C /* SVNShapeLocation.swift */,
+				A1D72EDF1E95AC590029E73C /* SVNShape.swift */,
+				A1D72EDB1E95ABC90029E73C /* ShapeMetaData.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A1D72EE21E95AC950029E73C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				A1D72ED91E95AB880029E73C /* SVNShapesManager.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +161,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D72EDE1E95AC470029E73C /* SVNShapeLocation.swift in Sources */,
+				A1D72EE01E95AC590029E73C /* SVNShape.swift in Sources */,
 				A1D72EDC1E95ABC90029E73C /* ShapeMetaData.swift in Sources */,
 				A1D72EDA1E95AB880029E73C /* SVNShapesManager.swift in Sources */,
 			);
