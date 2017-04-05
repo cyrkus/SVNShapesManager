@@ -13,7 +13,7 @@ import UIKit
     You can then use on of the various *create* methods to instanciate and add paths to a CALayer instance.
     Once created you can use one of the various *animate* methods to animate and mutate a SVNShapeMetaData instance and shapes therein.
  */
-final class SVNShapesManager : NSObject {
+public final class SVNShapesManager : NSObject {
     
     private  enum LayerType {
         case circle, oval, firstLine, secondLine, checkMark
