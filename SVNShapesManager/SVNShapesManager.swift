@@ -47,6 +47,12 @@ final class SVNShapesManager : NSObject {
     }
     
     //MARK: Constructors
+    /**
+     Using the *container: CGRect* passed to the SVNShapesManager on init this method will return a square of the 9x9 grid.
+     - returns :
+        CGRect
+     -important: not all locations are currently supported
+    */
     public func fetchRect(for location: SVNShapeLocation, with padding: CGPoint, and size: CGSize) -> CGRect{
         switch location {
         case .topLeft:
@@ -61,7 +67,10 @@ final class SVNShapesManager : NSObject {
             fatalError(ErrorType.unsupportedLocation.description)
         }
     }
-    
+    /**
+     A helper function for
+     - *fetchRect(SVNShapeLocation, CGPoint, CGSize) -> CGRect*
+     */
     public func fetchRect(with meta: SVNShapeMetaData) -> CGRect {
         return fetchRect(for: meta.location, with: meta.padding, and: meta.size)
     }
