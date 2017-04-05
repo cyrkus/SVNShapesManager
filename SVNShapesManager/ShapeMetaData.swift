@@ -20,13 +20,13 @@ import Foundation
     - strokeWidth: The lineWidth of the shape
 */
 public struct SVNShapeMetaData {
-    var shapes: [CAShapeLayer]?
-    var location: SVNShapeLocation
-    var padding: CGPoint
-    var size: CGSize
-    var fill: CGColor
-    var stroke: CGColor
-    var strokeWidth: CGFloat
+    public var shapes: [CAShapeLayer]?
+    public var location: SVNShapeLocation
+    public var padding: CGPoint
+    public var size: CGSize
+    public var fill: CGColor
+    public var stroke: CGColor
+    public var strokeWidth: CGFloat
     
     public init(meta: SVNShapeMetaData){
         self.shapes = meta.shapes
