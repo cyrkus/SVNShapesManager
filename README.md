@@ -17,6 +17,7 @@ Check your Carthage Version to make sure Carthage is installed locally:
     Carthage version
 
 Create a CartFile to manage your dependencies:
+
     Touch CartFile
 
 Open the Cartfile and add this as a dependency. (in OGDL):
