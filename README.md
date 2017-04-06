@@ -1,4 +1,13 @@
-# To install this framework
+# SVNShapesManager
+
+ A CALayer layout, animating, mutating and updating manager.
+ Currently supports exit, plus, circle, and checkmark shapes.
+
+    To use this manager pass the CGRect of the the container that you want to add shapes to.
+    You can then use on of the various *create* methods to instantiate and add paths to a CALayer instance.
+    Once created you can use one of the various *animate* methods to animate and mutate a SVNShapeMetaData instance.
+
+## To install this framework
 
 Add Carthage files to your .gitignore
  #Carthage
