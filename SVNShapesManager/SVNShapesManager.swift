@@ -24,6 +24,7 @@ public final class SVNShapesManager : NSObject {
         case notSupportedAnimation
         case unSupportedLayer
         case unsupportedLocation
+        case notTwoShapes
         
         var description: String {
             switch self {
@@ -35,6 +36,8 @@ public final class SVNShapesManager : NSObject {
                 return "This layer is currently unspported"
             case .unsupportedLocation:
                 return "This location is currently unsupported"
+            case .notTwoShapes:
+                return "The SVNShape passed is not a two line shape."
                 
             }
         }
@@ -77,12 +80,10 @@ public final class SVNShapesManager : NSObject {
         return fetchRect(for: meta.location, with: meta.padding, and: meta.size)
     }
     
+    
     //MARK: Shape Factory
     /**
-     Creates a Circle Layer and adds it to the button's sublayer
-     - parameters :
-     - fillColor: UIColor
-     - strokeColor: UIColor
+     Creates a Circle Layer
      */
     public func createCircleLayer(with meta: SVNShapeMetaData) -> CAShapeLayer {
         let circleLayer = CAShapeLayer()
@@ -95,17 +96,40 @@ public final class SVNShapesManager : NSObject {
         circleLayer.lineWidth = meta.strokeWidth
         return circleLayer
     }
+    /**
+     Creates a checkmark Layer
+    */
+    public func createCheckMark(with meta: SVNShapeMetaData) -> CAShapeLayer {
+        let checkMarkLayer = CAShapeLayer()
+        let checkMarkPath = UIBezierPath()
+        
+        checkMarkLayer.strokeColor = meta.stroke
+        checkMarkLayer.fillColor = meta.fill
+        checkMarkLayer.lineWidth = meta.strokeWidth
+        
+        let middle = max(meta.size.width, meta.size.height) * 0.5
+        
+        checkMarkPath.move(to: CGPoint(x: middle / 2, y: middle))
+        
+        checkMarkPath.addLine(to: CGPoint(x: middle, y: meta.size.height - middle/2))
+        
+        checkMarkPath.addLine(to: CGPoint(x: meta.size.width - middle/2, y: middle / 2))
+        checkMarkLayer.path = checkMarkPath.cgPath
+        
+        return checkMarkLayer
+    }
+    
     
     /**
-     Instaciates a two line shape
+     Creates a two line shape
      - important: Currently only supports types .exit and .plus
      - parameters:
-     - type: SVNStandardButtonType
-     - strokeColor: UIColor
-     - fillColor: UIColor
+     - meta: SVNShapeMetaData
+     - shape: SVNShape
      */
     public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNShape) -> [CAShapeLayer] {
         let middle = min(meta.size.width, meta.size.height) * 0.5
+        
         let plus = [CGPoint(x: middle, y: middle/2),
                     CGPoint(x:middle, y: meta.size.height - middle/2),
                     CGPoint(x: middle/2, y: middle),
@@ -115,6 +139,7 @@ public final class SVNShapesManager : NSObject {
                     CGPoint(x: middle + middle/2, y: meta.size.height - (middle  - middle/2)),
                     CGPoint(x: middle + middle/2, y: middle - middle/2),
                     CGPoint(x: middle - middle/2, y: meta.size.height - (middle - middle/2))]
+        
         var points :[CGPoint]!
         
         switch shape {
@@ -123,7 +148,7 @@ public final class SVNShapesManager : NSObject {
         case .plus:
             points = plus
         default:
-            fatalError(ErrorType.unSupportedLayer.description)
+            fatalError(ErrorType.notTwoShapes.description)
         }
         
         let firstLineLayer = CAShapeLayer()
@@ -154,27 +179,7 @@ public final class SVNShapesManager : NSObject {
         return [firstLineLayer, secondLineLayer]
     }
     
-    
-    public func createCheckMark(with meta: SVNShapeMetaData) -> [CAShapeLayer] {
-        let checkMarkLayer = CAShapeLayer()
-        let checkMarkPath = UIBezierPath()
-        
-        checkMarkLayer.strokeColor = meta.stroke
-        checkMarkLayer.fillColor = meta.fill
-        checkMarkLayer.lineWidth = meta.strokeWidth
-        
-        let middle = max(meta.size.width, meta.size.height) * 0.5
-        
-        checkMarkPath.move(to: CGPoint(x: middle / 2, y: middle))
-        
-        checkMarkPath.addLine(to: CGPoint(x: middle, y: meta.size.height - middle/2))
-        
-        checkMarkPath.addLine(to: CGPoint(x: meta.size.width - middle/2, y: middle / 2))
-        checkMarkLayer.path = checkMarkPath.cgPath
-        
-        return [checkMarkLayer]
-    }
-    
+ 
     //MARK: Animations
     /**
      Animates a circle shape to have the path of a horizontal oval
@@ -237,36 +242,6 @@ public final class SVNShapesManager : NSObject {
         CATransaction.commit()
     }
     
-    
-    
-    /**
-     Creates and add a layer or layers of the type to the button's subview
-     - parameters:
-     - state: SVNStandardButtonType the button type to create
-     - fillColor: UIColor the color to fill the layers
-     - strokeColor: UIColor the color to stroke the layers with
-     - important: will remove all previously added SVNStandardButtonType layers
-     
-     public func createLayer(for shape: SVNShape, fillColor: UIColor, strokeColor: UIColor) {
-     if customLayers != nil {
-     customLayers?.forEach({ $0.value.removeFromSuperlayer() })
-     customLayers = nil
-     }
-     self.currentShape = shape
-     switch shape {
-     case .checkMark:
-     self.createCheckMark(withFillColor: fillColor, strokeColor: strokeColor)
-     case .circle:
-     self.createCircleLayer(with: fillColor, strokeColor: strokeColor)
-     case .exit:
-     self.createTwoLines(with: shape, strokeColor: strokeColor, fillColor: fillColor)
-     case .plus:
-     self.createTwoLines(with: shape, strokeColor: strokeColor, fillColor: fillColor)
-     case .oval:
-     break
-     }
-     }
-     */
     
     /**
      Will animate using defaults
