@@ -106,14 +106,15 @@ public final class SVNShapesManager : NSObject {
         checkMarkLayer.strokeColor = meta.stroke
         checkMarkLayer.fillColor = meta.fill
         checkMarkLayer.lineWidth = meta.strokeWidth
+        let rect = fetchRect(with: meta)
         
-        let middle = max(meta.size.width, meta.size.height) * 0.5
+        let middle = max(rect.size.width, rect.size.height) * 0.5
         
         checkMarkPath.move(to: CGPoint(x: middle / 2, y: middle))
         
-        checkMarkPath.addLine(to: CGPoint(x: middle, y: meta.size.height - middle/2))
+        checkMarkPath.addLine(to: CGPoint(x: middle, y: rect.size.height - middle/2))
         
-        checkMarkPath.addLine(to: CGPoint(x: meta.size.width - middle/2, y: middle / 2))
+        checkMarkPath.addLine(to: CGPoint(x: rect.size.width - middle/2, y: middle / 2))
         checkMarkLayer.path = checkMarkPath.cgPath
         
         return checkMarkLayer
