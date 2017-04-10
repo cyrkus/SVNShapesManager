@@ -129,10 +129,11 @@ public final class SVNShapesManager : NSObject {
      - shape: SVNShape
      */
     public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNShape) -> [CAShapeLayer] {
-        let middle = min(meta.size.width, meta.size.height) * 0.5
+        let rect = self.fetchRect(with: meta)
+        let middle = min(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height) * 0.5
         
         let plus = [CGPoint(x: middle, y: middle/2),
-                    CGPoint(x:middle, y: meta.size.height - middle/2),
+                    CGPoint(x: middle, y: meta.size.height - middle/2),
                     CGPoint(x: middle/2, y: middle),
                     CGPoint(x: meta.size.width - middle/2, y: middle)]
         
