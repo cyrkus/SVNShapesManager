@@ -132,28 +132,26 @@ public final class SVNShapesManager : NSObject {
         let rect = self.fetchRect(with: meta)
         
         let mid = min(rect.size.width, rect.size.height) * 0.5
-        let middleX = mid + rect.origin.x
-        let middleY = mid + rect.origin.y
         
-        let plus = [CGPoint(x: middleX, y: middleY/2),
-                    CGPoint(x: middleX, y: meta.size.height - middleY/2),
-                    CGPoint(x: middleX/2, y: middleY),
-                    CGPoint(x: meta.size.width - middleX/2, y: middleY)]
+        let plus = [CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + mid),
+                    CGPoint(x: rect.origin.x + rect.size.width - mid / 2, y: rect.origin.y + mid),
+                    CGPoint(x: rect.origin.x + mid, y: rect.origin.y + mid / 2),
+                    CGPoint(x: rect.origin.x + mid, y: rect.origin.y + rect.size.height - mid / 2)]
         
-//        let exit = [CGPoint(x: middle - middle/2, y: middle - middle/2),
-//                    CGPoint(x: middle + middle/2, y: meta.size.height - (middle  - middle/2)),
-//                    CGPoint(x: middle + middle/2, y: middle - middle/2),
-//                    CGPoint(x: middle - middle/2, y: meta.size.height - (middle - middle/2))]
-//        
+        let exit = [CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + mid / 2),
+                    CGPoint(x: rect.origin.x + rect.size.width - mid / 2, y: rect.origin.y + rect.size.height - mid / 2),
+                    CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + rect.size.height - mid / 2),
+                    CGPoint(x: rect.origin.x + rect.size.width - mid / 2, y: rect.origin.y + mid / 2)]
+        
         var points :[CGPoint]!
         
         switch shape {
         case .exit:
-            points = plus
+            points = exit
         case .plus:
             points = plus
         default:
-            fatalError(ErrorType.notTwoShapes.description)
+            break
         }
         
         let firstLineLayer = CAShapeLayer()
@@ -183,6 +181,7 @@ public final class SVNShapesManager : NSObject {
         
         return [firstLineLayer, secondLineLayer]
     }
+    
     
  
     //MARK: Animations
