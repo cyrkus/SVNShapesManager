@@ -130,23 +130,26 @@ public final class SVNShapesManager : NSObject {
      */
     public func createTwoLines(with meta: SVNShapeMetaData, shapeToCreate shape: SVNShape) -> [CAShapeLayer] {
         let rect = self.fetchRect(with: meta)
-        let middle = min(rect.origin.x + rect.size.width, rect.origin.y + rect.size.height) * 0.5
         
-        let plus = [CGPoint(x: middle, y: middle/2),
-                    CGPoint(x: middle, y: meta.size.height - middle/2),
-                    CGPoint(x: middle/2, y: middle),
-                    CGPoint(x: meta.size.width - middle/2, y: middle)]
+        let mid = min(rect.size.width, rect.size.height) * 0.5
+        let middleX = mid + rect.origin.x
+        let middleY = mid + rect.origin.y
         
-        let exit = [CGPoint(x: middle - middle/2, y: middle - middle/2),
-                    CGPoint(x: middle + middle/2, y: meta.size.height - (middle  - middle/2)),
-                    CGPoint(x: middle + middle/2, y: middle - middle/2),
-                    CGPoint(x: middle - middle/2, y: meta.size.height - (middle - middle/2))]
+        let plus = [CGPoint(x: middleX, y: middleY/2),
+                    CGPoint(x: middleX, y: meta.size.height - middleY/2),
+                    CGPoint(x: middleX/2, y: middleY),
+                    CGPoint(x: meta.size.width - middleX/2, y: middleY)]
         
+//        let exit = [CGPoint(x: middle - middle/2, y: middle - middle/2),
+//                    CGPoint(x: middle + middle/2, y: meta.size.height - (middle  - middle/2)),
+//                    CGPoint(x: middle + middle/2, y: middle - middle/2),
+//                    CGPoint(x: middle - middle/2, y: meta.size.height - (middle - middle/2))]
+//        
         var points :[CGPoint]!
         
         switch shape {
         case .exit:
-            points = exit
+            points = plus
         case .plus:
             points = plus
         default:
