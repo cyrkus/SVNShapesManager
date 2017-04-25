@@ -60,14 +60,22 @@ public final class SVNShapesManager : NSObject {
         switch location {
         case .topLeft:
             return CGRect(x: padding.x, y: padding.y, width: size.width, height: size.height)
+            
         case .topMid:
             return CGRect(x: ((self.container.size.width - size.width) / 2) + padding.x, y: padding.y, width: size.width, height: size.height)
+            
         case .botMid:
             return CGRect(x: (self.container.width - size.width) / 2, y: self.container.height - (size.height + padding.y), width: size.width, height: size.height)
+            
         case .botRight:
             return CGRect(x: (self.container.width - size.width) - padding.x, y: self.container.height - (size.height + padding.y), width: size.width, height: size.height)
+            
         case .botLeft:
             return CGRect(x: padding.x, y: self.container.height - (size.height + padding.y), width: size.width, height: size.height)
+            
+        case .midRight:
+            return CGRect(x: padding.x, y: (self.container.height / 2) - padding.y, width: size.width, height: size.height)
+            
         default:
             fatalError(ErrorType.unsupportedLocation.description)
         }
