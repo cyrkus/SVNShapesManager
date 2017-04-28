@@ -151,6 +151,9 @@ public final class SVNShapesManager : NSObject {
                     CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + rect.size.height - mid / 2),
                     CGPoint(x: rect.origin.x + rect.size.width - mid / 2, y: rect.origin.y + mid / 2)]
         
+        let exlamationPoint = [CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + mid / 4),
+                               CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + ((rect.size.height / 2) + mid / 4))]
+        
         var points :[CGPoint]!
         
         switch shape {
@@ -158,8 +161,10 @@ public final class SVNShapesManager : NSObject {
             points = exit
         case .plus:
             points = plus
+        case .exlamationPoint:
+            points
         default:
-            break
+            fatalError("\(shape.self) is not a currently supported twoLines shape")
         }
         
         let firstLineLayer = CAShapeLayer()
@@ -189,7 +194,6 @@ public final class SVNShapesManager : NSObject {
         
         return [firstLineLayer, secondLineLayer]
     }
-    
     
  
     //MARK: Animations
@@ -253,6 +257,7 @@ public final class SVNShapesManager : NSObject {
         layers.forEach({$0.add(animation, forKey: animation.keyPath!)})
         CATransaction.commit()
     }
+    
     
     
     /**
