@@ -162,7 +162,7 @@ public final class SVNShapesManager : NSObject {
         case .plus:
             points = plus
         case .exlamationPoint:
-            points
+            fatalError()
         default:
             fatalError("\(shape.self) is not a currently supported twoLines shape")
         }
