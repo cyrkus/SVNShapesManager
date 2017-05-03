@@ -75,7 +75,10 @@ public final class SVNShapesManager : NSObject {
             
         case .midRight:
             return CGRect(x: self.container.width - (size.width + padding.x), y: (self.container.height / 2) - padding.y, width: size.width, height: size.height)
-            
+          
+        case .topRight:
+          return CGRect(x: self.container.width - (size.width + padding.x), y: padding.y, width: size.width, height: size.height)
+          
         default:
             fatalError(ErrorType.unsupportedLocation.description)
         }
