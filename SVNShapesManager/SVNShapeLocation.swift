@@ -14,7 +14,7 @@ import Foundation
  - important: Not all of these types are currently supported.
  */
 public enum SVNShapeLocation {
-    case topLeft, topMid, topRight, midLeft, midMid, midRight, botLeft, botMid, botRight
+    case topLeft, topMid, topRight, midLeft, midMid, midRight, botLeft, botMid, botRight, fullRect
 }
 
 

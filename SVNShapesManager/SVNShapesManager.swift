@@ -79,6 +79,9 @@ public final class SVNShapesManager : NSObject {
         case .topRight:
           return CGRect(x: self.container.width - (size.width + padding.x), y: padding.y, width: size.width, height: size.height)
           
+        case .fullRect:
+          return CGRect(x: padding.x, y: padding.y, width: container.width - padding.x, height: container.height - padding.y)
+          
         default:
             fatalError(ErrorType.unsupportedLocation.description)
         }
@@ -154,9 +157,9 @@ public final class SVNShapesManager : NSObject {
                     CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + rect.size.height - mid / 2),
                     CGPoint(x: rect.origin.x + rect.size.width - mid / 2, y: rect.origin.y + mid / 2)]
         
-        let exlamationPoint = [CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + mid / 4),
-                               CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + ((rect.size.height / 2) + mid / 4))]
-        
+//        let exlamationPoint = [CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + mid / 4),
+//                               CGPoint(x: rect.origin.x + mid / 2, y: rect.origin.y + ((rect.size.height / 2) + mid / 4))]
+      
         var points :[CGPoint]!
         
         switch shape {
@@ -164,8 +167,6 @@ public final class SVNShapesManager : NSObject {
             points = exit
         case .plus:
             points = plus
-        case .exlamationPoint:
-            fatalError()
         default:
             fatalError("\(shape.self) is not a currently supported twoLines shape")
         }
@@ -197,6 +198,9 @@ public final class SVNShapesManager : NSObject {
         
         return [firstLineLayer, secondLineLayer]
     }
+  
+  
+
     
  
     //MARK: Animations
