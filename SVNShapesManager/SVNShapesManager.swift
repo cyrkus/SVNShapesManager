@@ -199,6 +199,54 @@ public final class SVNShapesManager : NSObject {
         return [firstLineLayer, secondLineLayer]
     }
   
+  //
+  //  private func showErrorIcon(){
+  //    let errorRect = CGRect(x: frame.width - ((frame.height / 2) + 10), y: frame.height / 4,
+  //                           width: frame.height / 2, height: frame.height / 2)
+  //
+  //    let circleMeta = SVNShapeMetaData(shapes: nil,
+  //                                      location: .fullRect,
+  //                                      padding: CGPoint(x: 0, y: 0),
+  //                                      size: CGSize(width: errorRect.size.width, height: errorRect.size.height),
+  //                                      fill: UIColor.clear.cgColor,
+  //                                      stroke: UIColor.red.cgColor,
+  //                                      strokeWidth: 1.5)
+  //
+  //    let shapesManager = SVNShapesManager(container: errorRect)
+  //
+  //    let outerCircle = shapesManager.createCircleLayer(with: circleMeta)
+  //
+  //    let innercircleMeta = SVNShapeMetaData(shapes: nil, location: .botMid,
+  //                                           padding: CGPoint(x: 0,
+  //                                                            y: 5.0),
+  //                                           size: CGSize(width: 3.0, height: 3.0),
+  //                                           fill: UIColor.red.cgColor,
+  //                                           stroke: UIColor.clear.cgColor,
+  //                                           strokeWidth: 1.0)
+  //
+  //    let innerCircle = shapesManager.createCircleLayer(with: innercircleMeta)
+  //
+  //    let lineLayer = CAShapeLayer() // a line set to the outercircles frame
+  //    lineLayer.strokeColor = UIColor.red.cgColor
+  //    lineLayer.lineWidth = 2.5
+  //    lineLayer.fillColor = UIColor.red.cgColor
+  //    let linePath = UIBezierPath()
+  //    linePath.move(to: CGPoint(x: errorRect.size.width / 2,
+  //                              y: 5.0))
+  //    linePath.addLine(to: CGPoint(x: errorRect.size.width / 2,
+  //                                 y: errorRect.size.height - 10.0))
+  //    lineLayer.path = linePath.cgPath
+  //
+  //
+  //    errorIcon = UIView(frame: errorRect)
+  //    [outerCircle, innerCircle, lineLayer].forEach({
+  //      errorIcon?.layer.addSublayer($0)
+  //    })
+  //    addSubview(errorIcon!)
+  //  }
+  //
+
+  
   
 
     
